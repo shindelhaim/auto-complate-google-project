@@ -1,20 +1,20 @@
 
-page = {}
+# page = {}
 
-input = "hello big"
+# input = "hello big"
 
-sentences_sort = [{sentence: page}]
+# sentences_sort = [{sentence: page}]
 
-data = {"key": place}
+# data = {"key": place}
 
-place = {"bagin":index,"end" : index}
+# place = {"bagin":index,"end" : index}
 
 
-#algoritm
+# #algoritm
 
-place = data[input]
+# place = data[input]
 
-return 
+# return 
 
 
 
