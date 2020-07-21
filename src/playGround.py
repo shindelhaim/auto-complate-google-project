@@ -5,7 +5,7 @@ input = "hello big"
 
 sentences_sort = [{sentence: page}]
 
-data{"key": place}
+data = {"key": place}
 
 place = {"bagin":index,"end" : index}
 
