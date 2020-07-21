@@ -18,7 +18,7 @@ def remove_space_of_begin(sentence):
 
 def get_dict_of_sentences(sentence, id_src):
     sentence = remove_space_of_begin(sentence)
-    return [{"sentence": sentence, "src": id_src}]
+    return {"sentence": sentence, "src": id_src}
 
 
 def read_from_files():
@@ -30,7 +30,11 @@ def read_from_files():
             sentences = file.read().split("\n")
 
         for sentence in sentences:
-            sentences_data_no_sorted += get_dict_of_sentences(sentence, id)
+            dict_sentence = get_dict_of_sentences(sentence, id)
+
+            if(dict_sentence["sentence"] != "" and dict_sentence not in sentences_data_no_sorted):
+                sentences_data_no_sorted += [dict_sentence]
+
 
     global sentences_data
     sentences_data = sorted(sentences_data_no_sorted, key=lambda k: k["sentence"])
