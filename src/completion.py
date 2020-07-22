@@ -1,4 +1,4 @@
-from data.init_data import data_for_search, get_sentences_data
+from data.init_data import data_for_search, get_sentences_data, get_source_files
 from input_correction import get_completions_with_correction
 from auto_complete_data import AutoCompleteData
 
@@ -33,7 +33,7 @@ def get_best_k_completions(input):
         autoCompleteData_list += [AutoCompleteData(item)]
     
     for i in range(len(autoCompleteData_list)):
-        print(f'{i + 1}. {autoCompleteData_list[i].completed_sentence}, ({autoCompleteData_list[i].source_text}) \n')
+        print(f'{i + 1}. {autoCompleteData_list[i].completed_sentence}, ({get_source_files()[autoCompleteData_list[i].source_text]}) \n')
 
 
 # if __name__ == "__main__":
