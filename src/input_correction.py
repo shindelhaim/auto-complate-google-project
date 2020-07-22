@@ -22,7 +22,7 @@ def character_replacement(substr, num_sentences):
                 for j in some_match_indexes:
                     sentence_dict = list_sentences_data[j]
                     
-                    while count_add_later < len(match_indexes) and sentence_dict in list(map(lambda d: {"sentence": d["sentence"], "src": d["src"]}, some_match_indexes[: i])):
+                    while count_add_later < len(match_indexes) and sentence_dict in list(map(lambda d: {"sentence": d["sentence"], "src": d["src"]}, suitable_completions)):
                         sentence_dict = list_sentences_data[count_add_later]
                         count_add_later += 1
                     
@@ -65,10 +65,10 @@ def deleting_character(substr, num_sentences):
                 count_add_later = num_sentences
                 list_sentences_data = get_sentences_data()
 
-                for j in match_indexes:
+                for j in some_match_indexes:
                     sentence_dict = list_sentences_data[j]
                     
-                    while count_add_later < len(match_indexes) and sentence_dict in list(map(lambda d: {"sentence": d["sentence"], "src": d["src"]}, some_match_indexes[: i])):
+                    while count_add_later < len(match_indexes) and sentence_dict in list(map(lambda d: {"sentence": d["sentence"], "src": d["src"]}, suitable_completions)):
                         sentence_dict = list_sentences_data[count_add_later]
                         count_add_later += 1
                     
@@ -104,14 +104,13 @@ def adding_character(substr, num_sentences):
         match_indexes = data_for_search.get(corrction_str, None)
             
         if match_indexes:
-                
             some_match_indexes = match_indexes[:num_sentences] if len(match_indexes) > num_sentences else match_indexes
             count_add_later = num_sentences
             list_sentences_data = get_sentences_data()
 
-            for j in match_indexes:
+            for j in some_match_indexes:
                 sentence_dict = list_sentences_data[j]
-                while count_add_later < len(match_indexes) and sentence_dict in list(map(lambda d: {"sentence": d["sentence"], "src": d["src"]}, some_match_indexes[: i])):
+                while (count_add_later < len(match_indexes)) and sentence_dict in list(map(lambda d: {"sentence": d["sentence"], "src": d["src"]}, suitable_completions)):
                     sentence_dict = list_sentences_data[count_add_later]
                     count_add_later += 1
                 
@@ -146,11 +145,13 @@ def get_completions_with_correction(substr, num_sentences):
     correction_list = sorted(correction_list, key=lambda k: k["score"], reverse=True)
 
     # remove duplicate sentences in correction_list
-    for i, item in enumerate(correction_list, 1):
-        if {"sentence": item["sentence"], "src": item["src"]} in list(map(lambda d: {"sentence": d["sentence"], "src": d["src"]}, correction_list[: i])):
-            correction_list.remove(item)
+    new_correction_list = []
 
-    len_correction_list = len(correction_list)
-    index_end = 5 if len_correction_list > 5 else len_correction_list
+    for item in correction_list:
+        if {"sentence": item["sentence"], "src": item["src"]} not in list(map(lambda d: {"sentence": d["sentence"], "src": d["src"]}, new_correction_list)):
+            new_correction_list += [item]
+            
+    len_correction_list = len(new_correction_list)
+    index_end = num_sentences if len_correction_list > num_sentences else len_correction_list
     
-    return correction_list[:index_end]
+    return new_correction_list[:index_end]
