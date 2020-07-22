@@ -7,6 +7,8 @@ sentences_data = []
 
 data_for_search = {}
 
+def get_source_files():
+    return source_files
 
 
 def get_sentences_data():
