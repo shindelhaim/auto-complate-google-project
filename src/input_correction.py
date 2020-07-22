@@ -5,11 +5,12 @@ from data.init_data import data_for_search, get_sentences_data
 def character_replacement(substr, num_sentences):
     num_suitables = 0
     suitable_completions = []
+    
 
-    for i in range(0,len(substr),-1):
-        
+    for i in range(0,len(substr))[::-1]:
+
         for char in string.printable:
-
+            
             corrction_str = substr[:i] + char + substr[i + 1:]
             match_indexes = data_for_search.get(corrction_str, None)
             
@@ -27,7 +28,9 @@ def character_replacement(substr, num_sentences):
                     else:
                         sentence_dict["score"] -= 1
 
-                    suitable_completions += sentence_dict
+                    
+                    sentence_dict["offset"] = (sentence_dict["sentence"]).index(corrction_str)
+                    suitable_completions += [sentence_dict]
 
                 num_suitables = len(suitable_completions)
                 num_sentences -= num_suitables
