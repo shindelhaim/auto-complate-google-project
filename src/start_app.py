@@ -9,7 +9,7 @@ def start_application():
 
         while(new_input != '#' and user_input != '#'):
             user_input += new_input
-            print(f'Here are 5 suggestions: \n')
+            print(f'Here are suggestions: \n')
             get_best_k_completions(user_input)
             
             print(user_input, end='')
