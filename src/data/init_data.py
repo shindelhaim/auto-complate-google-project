@@ -7,6 +7,8 @@ sentences_data = []
 
 data_for_search = {}
 
+
+
 def get_source_files():
     return source_files
 
@@ -22,9 +24,9 @@ def remove_space_of_begin(sentence):
     return sentence
 
 
-def get_dict_of_sentences(sentence, id_src):
+def get_dict_of_sentences(sentence, id_src, num_line):
     sentence = remove_space_of_begin(sentence)
-    return {"sentence": sentence, "src": id_src}
+    return {"sentence": sentence, "src": id_src, "line": num_line}
 
 
 def read_from_files():  
@@ -34,10 +36,10 @@ def read_from_files():
         with open(name) as file:
             sentences = file.read().split("\n")
 
-        for sentence in sentences:
-            dict_sentence = get_dict_of_sentences(sentence, id)
+        for num_line, sentence in enumerate(sentences):
+            dict_sentence = get_dict_of_sentences(sentence, id, num_line)
 
-            if(dict_sentence["sentence"] != "" and dict_sentence not in sentences_data):
+            if dict_sentence["sentence"] != "":
                 sentences_data += [dict_sentence]
 
 
@@ -54,7 +56,8 @@ def init_data_for_search():
                 data_for_search[sub].add(index)
             else:
                 data_for_search[sub] = {index}
-   
+    
+    #sort indexes for every sub
     for sub in data_for_search.keys():
         data_for_search[sub] = list(data_for_search[sub])
         data_for_search[sub] = sorted(data_for_search[sub], 
