@@ -1,5 +1,6 @@
 import string
 import os
+import shelve
 
 source_files = {0: "data/contents.txt"}
 
@@ -59,6 +60,25 @@ def read_from_files():
                 sentences_data += [dict_sentence]
 
 
+# def read_from_files():  
+#     key_sentence = 0
+#     sentences_data = shelve.open('sentences_data.db')
+    
+#     try:
+#         for id, name in list(source_files.items())[:10]:
+#             with open(name) as file:
+#                 sentences = file.read().split("\n")
+
+#             for num_line, sentence in enumerate(sentences):
+#                 dict_sentence = get_dict_of_sentences(sentence, id, num_line)
+
+#                 if dict_sentence["sentence"] != "":
+#                     sentences_data[str(key_sentence)] = dict_sentence
+#                     key_sentence += 1
+#     finally:
+#         sentences_data.close()
+
+
 def get_sub_sentences(sentence):
     return [sentence[i:j] for i in range(0, len(sentence) + 1) for j in range(i + 1, len(sentence) + 1)]
 
@@ -88,7 +108,15 @@ def init_meta_data():
 
 if __name__ == "__main__":
     init_source_files("data/technology_texts")
-    print(source_files)
+    read_from_files()
+    s = shelve.open('sentences_data.db')
+try:
+    existing = s['25']
+    existing2 = s['1054']
+finally:
+    s.close()
+
+print(existing, existing2)
     # init_meta_data()
     # # print(f'{sentences_data} \n')
     # print(f'{data_for_search["C server"]} \n')
