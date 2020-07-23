@@ -22,7 +22,7 @@ def character_replacement(substr, num_sentences):
                 for j in some_match_indexes:
                     sentence_dict = list_sentences_data[j]
                     
-                    while count_add_later < len(match_indexes) and sentence_dict in list(map(lambda d: {"sentence": d["sentence"], "src": d["src"]}, suitable_completions)):
+                    while count_add_later < len(match_indexes) and sentence_dict in list(map(lambda d: {"sentence": d["sentence"], "src": d["src"], "line": d["line"]}, suitable_completions)):
                         sentence_dict = list_sentences_data[count_add_later]
                         count_add_later += 1
                     
@@ -68,7 +68,7 @@ def deleting_character(substr, num_sentences):
                 for j in some_match_indexes:
                     sentence_dict = list_sentences_data[j]
                     
-                    while count_add_later < len(match_indexes) and sentence_dict in list(map(lambda d: {"sentence": d["sentence"], "src": d["src"]}, suitable_completions)):
+                    while count_add_later < len(match_indexes) and sentence_dict in list(map(lambda d: {"sentence": d["sentence"], "src": d["src"], "line": d["line"]}, suitable_completions)):
                         sentence_dict = list_sentences_data[count_add_later]
                         count_add_later += 1
                     
@@ -110,7 +110,7 @@ def adding_character(substr, num_sentences):
 
             for j in some_match_indexes:
                 sentence_dict = list_sentences_data[j]
-                while (count_add_later < len(match_indexes)) and sentence_dict in list(map(lambda d: {"sentence": d["sentence"], "src": d["src"]}, suitable_completions)):
+                while (count_add_later < len(match_indexes)) and sentence_dict in list(map(lambda d: {"sentence": d["sentence"], "src": d["src"], "line": d["line"]}, suitable_completions)):
                     sentence_dict = list_sentences_data[count_add_later]
                     count_add_later += 1
                 
@@ -148,7 +148,7 @@ def get_completions_with_correction(substr, num_sentences):
     new_correction_list = []
 
     for item in correction_list:
-        if {"sentence": item["sentence"], "src": item["src"]} not in list(map(lambda d: {"sentence": d["sentence"], "src": d["src"]}, new_correction_list)):
+        if {"sentence": item["sentence"], "src": item["src"], "line": item["line"]} not in list(map(lambda d: {"sentence": d["sentence"], "src": d["src"], "line": d["line"]}, new_correction_list)):
             new_correction_list += [item]
             
     len_correction_list = len(new_correction_list)
