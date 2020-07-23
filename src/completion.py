@@ -13,7 +13,7 @@ def get_list_completions(input):
 
         for i in match_indexes:
             sentence_dict = list_sentences_data[i]
-            sentence_dict["score"] = len(list_sentences_data[i]["sentence"]) * 2
+            sentence_dict["score"] = len(input) * 2
             sentence_dict["offset"] = (sentence_dict["sentence"]).index(input)
             suitable_completions += [sentence_dict]
             
