@@ -20,7 +20,14 @@ def get_list_completions(input):
 
     if len(suitable_completions) < 5:
         suitable_completions += get_completions_with_correction(input, 5 - len(suitable_completions))
+        # remove duplicate sentences in suitable_completions
+        new_suitable_list = []
 
+        for item in suitable_completions:
+            if {"sentence": item["sentence"], "src": item["src"], "line": item["line"]} not in list(map(lambda d: {"sentence": d["sentence"], "src": d["src"], "line": d["line"]}, new_suitable_list)):
+                new_suitable_list += [item]
+        return new_suitable_list
+    
 
     return suitable_completions
 
@@ -33,7 +40,7 @@ def get_best_k_completions(input):
         autoCompleteData_list += [AutoCompleteData(item)]
     
     for i in range(len(autoCompleteData_list)):
-        print(f'{i + 1}. {autoCompleteData_list[i].completed_sentence}, ({get_source_files()[autoCompleteData_list[i].source_text]}) \n')
+        print(f'{i + 1}. {autoCompleteData_list[i].completed_sentence}, ({get_source_files()[autoCompleteData_list[i].source_text[0]]} {autoCompleteData_list[i].source_text[1]}) \n')
 
 
 # if __name__ == "__main__":
