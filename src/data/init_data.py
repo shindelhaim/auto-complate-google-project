@@ -46,7 +46,7 @@ def get_dict_of_sentences(sentence, id_src, num_line):
 
 
 def read_from_files():  
-    for id, name in list(source_files.items())[:3]:
+    for id, name in list(source_files.items())[:10]:
         global sentences_data
 
         with open(name) as file:
