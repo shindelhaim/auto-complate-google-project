@@ -15,10 +15,9 @@ def get_suitable_sentences_without_duplicates(i_letter, corrction_str, match_ind
         if sentence_dict in l:
             continue
 
-        
-
         if "replacement" == type_change:
             sentence_dict["score"] = len(corrction_str) * 2
+
             if(i_letter < 4):
                 sentence_dict["score"] -=  5 - i_letter
             else:
@@ -31,8 +30,8 @@ def get_suitable_sentences_without_duplicates(i_letter, corrction_str, match_ind
                 sentence_dict["score"] -=  10 - 2 * i_letter
             else:
                 sentence_dict["score"] -= 2
-        
-        if  "adding" == type_change:
+
+        if "adding" == type_change:
             sentence_dict["score"] = len(corrction_str) * 2 + 1
 
             if(i_letter < 4):
@@ -40,7 +39,6 @@ def get_suitable_sentences_without_duplicates(i_letter, corrction_str, match_ind
             else:
                 sentence_dict["score"] -= 2
 
-        sentence_dict["offset"] = (sentence_dict["sentence"]).index(corrction_str)
         suitable_completions += [sentence_dict]
         num_miss_sentences -= 1
 
@@ -53,7 +51,7 @@ def character_replacement(substr, num_sentences):
 
     for i in range(0, len(substr))[::-1]:
 
-        for char in string.printable.replace(substr[i],''):
+        for char in 'abcdefghijklmnopqrstuvwxyz'.replace(substr[i],''):
             
             corrction_str = substr[:i] + char + substr[i + 1:] if i != len(substr) - 1 else substr[:i] + char
             match_indexes = data_for_search.get(corrction_str, None)
@@ -76,7 +74,7 @@ def deleting_character(substr, num_sentences):
     
     for i in range(0, len(substr) - 1)[::-1]:
 
-        for char in string.printable:
+        for char in 'abcdefghijklmnopqrstuvwxyz':
             
             corrction_str = substr[:i + 1] + char + substr[i + 1:]
             match_indexes = data_for_search.get(corrction_str, None)
