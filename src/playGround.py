@@ -1,4 +1,88 @@
 
+str = 'not   on     our team'
+list_ = str.split(' ')
+list_ = [c for c in list_ if c != '']
+print(' '.join(list_))
+
+
+# import shelve
+
+# s = shelve.open('sentences_data.db')
+# try:
+#     s['key1'] = { 'int': 10, 'float':9.5, 'string':'Sample data' }
+#     s['key2'] = { 'int': 8, 'float':5, 'string':'Sample data' }
+# finally:
+#     s.close()
+
+# s = shelve.open('sentences_data.db')
+# try:
+#     existing = s['key1']
+#     existing2 = s['key2']
+# finally:
+#     s.close()
+
+# s = shelve.open('sentences_data.db')
+# try:
+#     existing = s['key1']
+#     existing2 = s['key2']
+# finally:
+#     s.close()
+
+# s = shelve.open('sentences_data.db')
+# try:
+#     existing = s['key1']
+#     existing2 = s['key2']
+# finally:
+#     s.close()
+
+# s = shelve.open('sentences_data.db')
+# try:
+#     existing = s['key1']
+#     existing2 = s['key2']
+# finally:
+#     s.close()
+
+# s = shelve.open('sentences_data.db')
+# try:
+#     existing = s['key1']
+#     existing2 = s['key2']
+# finally:
+#     s.close()
+
+
+
+# s = shelve.open('sentences_data.db')
+# try:
+#     existing = s['key1']
+#     existing2 = s['key2']
+# finally:
+#     s.close()
+
+
+
+# s = shelve.open('sentences_data.db')
+# try:
+#     existing = s['key1']
+#     existing2 = s['key2']
+# finally:
+#     s.close()
+
+
+
+# s = shelve.open('sentences_data.db')
+# try:
+#     existing = s['key1']
+#     existing2 = s['key2']
+# finally:
+#     s.close()
+
+
+# s = shelve.open('sentences_data.db')
+# try:
+#     existing = s['key1']
+#     existing2 = s['key2']
+# finally:
+#     s.close()
 
 
 # import os
